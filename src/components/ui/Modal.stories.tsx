@@ -67,3 +67,28 @@ export const Centered: Story = {
     </Modal>
   ),
 };
+
+export const WithImage: Story = {
+  parameters: {
+    layout: "centered",
+  },
+  render: () => (
+    <Modal className="items-center text-center">
+      <Modal.CloseButton onClick={() => {}}>
+        <X className="h-5 w-5" />
+      </Modal.CloseButton>
+      <Modal.Image
+        src="https://picsum.photos/id/237/200/300"
+        alt="Sample image"
+        className="mb-2"
+      />
+      <Modal.Header>
+        <h2>Modal Header</h2>
+      </Modal.Header>
+      <Modal.Description>
+        Modal Description
+      </Modal.Description>
+      <Modal.ButtonCta onClick={() => {}}>Continue</Modal.ButtonCta>
+    </Modal>
+  ),
+};

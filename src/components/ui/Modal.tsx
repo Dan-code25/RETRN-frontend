@@ -30,6 +30,12 @@ interface ModalCloseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEle
   children?: React.ReactNode;
 }
 
+interface ModalImageProps {
+  className?: string;
+  src: string;
+  alt: string;
+}
+
 export default function Modal({ className, children }: ModalProps) {
   return (
     <div
@@ -96,5 +102,13 @@ Modal.CloseButton = function ModalCloseButton({
     >
       {children}
     </button>
+  );
+};
+
+Modal.Image = function ModalImage({ className, src, alt }: ModalImageProps) {
+  return (
+    <div className={`flex justify-center mt-4 ${className ?? ""}`}>
+      <img src={src} alt={alt} className="max-w-full max-h-full" />
+    </div>
   );
 };
