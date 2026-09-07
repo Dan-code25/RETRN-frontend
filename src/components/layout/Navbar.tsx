@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 import avatarPlaceholder from "../../assets/avatar-placeholder.svg";
 
@@ -46,7 +47,10 @@ interface NavbarUserProps {
 export default function Navbar({ className, children }: NavbarProps) {
   return (
     <nav
-      className={`navbar-shadow sticky top-0 z-50 flex min-h-14 w-full items-center justify-between gap-6 bg-white px-4 py-3 ${className ?? ""}`}
+      className={twMerge(
+        "navbar-shadow sticky top-0 z-50 flex min-h-14 w-full items-center justify-between gap-6 bg-white px-4 py-3",
+        className,
+      )}
     >
       {children}
     </nav>
@@ -55,7 +59,7 @@ export default function Navbar({ className, children }: NavbarProps) {
 
 Navbar.Logo = function NavbarLogo({ className, logoSrc }: NavbarLogoProps) {
   return (
-    <div className={`shrink-0 ${className ?? ""}`}>
+    <div className={twMerge("shrink-0", className)}>
       <img
         className="h-9 max-w-full w-auto object-contain sm:h-12"
         src={logoSrc}
@@ -74,7 +78,10 @@ Navbar.Button = function NavbarButton({
 }: NavbarButtonProps) {
   return (
     <button
-      className={`cursor-pointer inline-flex min-h-9 max-w-full shrink-0 items-center justify-center truncate rounded-md bg-brand px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-brand-darker sm:min-h-10 sm:px-4 sm:text-sm ${className ?? ""}`}
+      className={twMerge(
+        "inline-flex min-h-9 max-w-full shrink-0 cursor-pointer items-center justify-center truncate rounded-md bg-brand px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-brand-darker sm:min-h-10 sm:px-4 sm:text-sm",
+        className,
+      )}
       onClick={onClick}
       type={type}
       {...rest}
@@ -88,7 +95,7 @@ Navbar.UserInfo = function NavbarUserInfo({
   className,
   children,
 }: NavbarUserInfoProps) {
-  return <div className={`${className ?? ""}`}>{children}</div>;
+  return <div className={className}>{children}</div>;
 };
 
 Navbar.UserEmail = function NavbarUserEmail({
@@ -96,7 +103,7 @@ Navbar.UserEmail = function NavbarUserEmail({
   email,
 }: NavbarUserEmailProps) {
   return (
-    <div className={`text-sm font-medium ${className ?? ""}`}>
+    <div className={twMerge("text-sm font-medium", className)}>
       <p>{email}</p>
     </div>
   );
@@ -107,7 +114,7 @@ Navbar.UserRole = function NavbarUserRole({
   role,
 }: NavbarUserRoleProps) {
   return (
-    <div className={`text-xs ${className ?? ""}`}>
+    <div className={twMerge("text-xs", className)}>
       <p>{role}</p>
     </div>
   );
@@ -119,7 +126,10 @@ Navbar.UserAvatar = function NavbarUserAvatar({
 }: NavbarUserAvatarProps) {
   return (
     <div
-      className={`h-10 w-10 rounded-full overflow-hidden sm:h-13 sm:w-13 ${className ?? ""}`}
+      className={twMerge(
+        "h-10 w-10 overflow-hidden rounded-full sm:h-13 sm:w-13",
+        className,
+      )}
     >
       <img src={avatarSrc ?? avatarPlaceholder} alt="User Avatar" />
     </div>
@@ -128,7 +138,7 @@ Navbar.UserAvatar = function NavbarUserAvatar({
 
 Navbar.User = function NavbarUser({ className, children }: NavbarUserProps) {
   return (
-    <div className={`flex items-center gap-2 ${className ?? ""}`}>
+    <div className={twMerge("flex items-center gap-2", className)}>
       {children}
     </div>
   );
