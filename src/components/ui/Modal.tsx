@@ -38,11 +38,15 @@ interface ModalImageProps {
   alt: string;
 }
 
+interface ModalOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+}
+
 export default function Modal({ className, children }: ModalProps) {
   return (
     <div
       className={twMerge(
-        "relative flex w-full max-w-md flex-col gap-2 rounded-lg bg-white p-5 shadow-md sm:p-6",
+        "fixed left-1/2 top-1/2 z-50 flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-2 rounded-lg bg-white p-5 shadow-md sm:p-6",
         className,
       )}
     >
@@ -50,6 +54,22 @@ export default function Modal({ className, children }: ModalProps) {
     </div>
   );
 }
+
+Modal.Overlay = function ModalOverlay({
+  className,
+  ...rest
+}: ModalOverlayProps) {
+  return (
+    <div
+      aria-hidden="true"
+      className={twMerge(
+        "fixed inset-0 z-40 bg-black/40 backdrop-blur-sm",
+        className,
+      )}
+      {...rest}
+    />
+  );
+};
 
 Modal.Header = function ModalHeader({ className, children }: ModalHeaderProps) {
   return (
