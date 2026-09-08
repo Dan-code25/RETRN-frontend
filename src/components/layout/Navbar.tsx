@@ -19,7 +19,7 @@ interface NavbarButtonProps extends ComponentPropsWithoutRef<"button"> {
   buttonText: string;
 }
 
-interface NavbarUserAvatarProps {
+interface NavbarUserAvatarProps extends ComponentPropsWithoutRef<"button"> {
   className?: string;
   avatarSrc?: string;
 }
@@ -123,16 +123,20 @@ Navbar.UserRole = function NavbarUserRole({
 Navbar.UserAvatar = function NavbarUserAvatar({
   className,
   avatarSrc,
+  type = "button",
+  ...rest
 }: NavbarUserAvatarProps) {
   return (
-    <div
+    <button
       className={twMerge(
-        "h-10 w-10 overflow-hidden rounded-full sm:h-13 sm:w-13",
+        "h-10 w-10 cursor-pointer overflow-hidden rounded-full border-0 bg-transparent p-0 sm:h-13 sm:w-13",
         className,
       )}
+      type={type}
+      {...rest}
     >
       <img src={avatarSrc ?? avatarPlaceholder} alt="User Avatar" />
-    </div>
+    </button>
   );
 };
 
