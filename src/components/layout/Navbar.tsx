@@ -48,7 +48,7 @@ export default function Navbar({ className, children }: NavbarProps) {
   return (
     <nav
       className={twMerge(
-        "navbar-shadow sticky top-0 z-50 flex min-h-14 w-full items-center justify-between gap-6 bg-white px-4 py-3",
+        "navbar-shadow sticky top-0 z-45 flex min-h-14 w-full items-center justify-between gap-6 bg-white px-4 py-3",
         className,
       )}
     >
