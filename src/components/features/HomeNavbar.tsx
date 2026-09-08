@@ -1,22 +1,34 @@
-import Navbar from '../layout/Navbar';
+import Navbar from "../layout/Navbar";
 
-import logo from '../../assets/logo.svg';
+import logo from "../../assets/logo.svg";
+
+import type { UserProfile } from "../../types/userProfile";
 
 interface HomeNavbarProps {
-  avatarSrc?: string;
+  user?: UserProfile | null;
+  onLoginClick: () => void;
   onAvatarClick?: () => void;
 }
 
-export default function HomeNavbar({ avatarSrc, onAvatarClick }: HomeNavbarProps) {
+export default function HomeNavbar({ user, onAvatarClick, onLoginClick }: HomeNavbarProps) {
   return (
     <Navbar>
       <Navbar.Logo logoSrc={logo} />
       <Navbar.User>
-        <Navbar.UserInfo className="hidden sm:block">
-          <Navbar.UserEmail email="user@example.com" />
-          <Navbar.UserRole role="Admin" className="text-end" />
-        </Navbar.UserInfo>
-        <Navbar.UserAvatar onClick={onAvatarClick} avatarSrc={avatarSrc} />
+        {user ? (
+          <>
+            <Navbar.UserInfo className="hidden sm:block">
+              <Navbar.UserEmail email={user.email} />
+              <Navbar.UserRole role={user.role} className="text-end" />
+            </Navbar.UserInfo>
+            <Navbar.UserAvatar
+              onClick={onAvatarClick}
+              avatarSrc={user.avatarSrc}
+            />
+          </>
+        ) : (
+          <Navbar.Button buttonText="Login" onClick={onLoginClick} />
+        )}
       </Navbar.User>
     </Navbar>
   );

@@ -15,5 +15,5 @@ export const Default: Story = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: () => <HomeNavbar />,
+  render: () => <HomeNavbar onLoginClick={() => {}} />,
 }
